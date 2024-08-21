@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background-color: #000;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: #7F00FF;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        nav a:hover {
+            color: #ffcc00;
+        }
+        
+        section {
+            padding: 2em;
+            margin: 0 auto;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        h1, h2 {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.5em;
+        }
+        
+        h3 {
+            color: #ccc;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.3em;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .home-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.3em;
+            font-weight: 600;
+        }
+        
+        .home-container h3 {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            color: #7F00FF;
+        }
+        
+        .home-container p {
+            font-size: 1em;
+            margin: 0.5em 0;
+        }
+        
+        .home-container p.tags a {
+            color: #7F00FF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .home-container p.tags a:hover {
+            text-decoration: underline;
+        }
+        
+        .swiper-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 2em;
+        }
+        
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #333;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+        }
+        
+        .swiper-slide h3 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+            color: #fff;
+        }
+        
+        .swiper-slide p {
+            text-align: center;
+            font-size: 0.95em;
+            line-height: 1.6em;
+            color: #ccc;
+        }
+        
+        .swiper-slide img {
+            width: 50%;
+            border-radius: 8px;
+            margin: 1em 0;
+        }
+        
+        .swiper-slide a {
+            color: #7F00FF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .swiper-slide a:hover {
+            text-decoration: underline;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: #7F00FF;
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .swiper-button-next {
+            right: 10px;
+        }
+        
+        .swiper-button-prev {
+            left: 10px;
+        }
+        
+        .swiper-pagination {
+            bottom: 15px !important;
+        }
+        
+        footer {
+            background: #7F00FF;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: auto;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 -4px 8px rgba(255, 255, 255, 0.1);
+        }
+        
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .skills-list li {
+            background: #333;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+            color: #fff;
+        }
+        
+        .skills-list .skill {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .skills-list .percentage {
+            font-weight: bold;
+            color: #7F00FF;
+        }
+        
+        .experience-education-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .experience-list, .education-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background: #333;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+            flex: 1;
+        }
+        
+        .experience-list li, .education-list li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5em;
+        }
+        
+        .experience-list .company, .education-list .institution {
+            font-style: italic;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+        
+        .experience-list .years, .education-list .years {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        
+        .toggle-button {
+            background: #7F00FF;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-button:hover {
+            background: #004c99;
+        }
+        
+        .description {
+            display: none;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        .contact-container p {
+            font-size: 1em;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        
+        .contact-container a {
+            color: #7F00FF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="home-container">
+        <img src="Vishnu_pass_pic.JPG" alt="Vishnu J" style="width:100px; height:auto; border-radius:50%;">
+        <h2>Hi, I'm Vishnu J</h2>
+        <h3>Machine Learning Engineer</h3>
+        <p>MTech in AI & ML @VIT'23 | Artificial Intelligence | Machine Learning | Gen AI | LLM | NLP | Data Science | Software Development | Open Research | Freelance</p>
+        <p class="tags">
+            <a href="#contact"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/vishnuj1999" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/vishnuj991999" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://huggingface.co/vishnuj991999" target="_blank" rel="noopener noreferrer"><i class="fas fa-robot"></i></a>
+            <a href="https://drive.google.com/file/d/1022UyyZkz-HWYPkdmg40czC-5qXbDEBk/view?usp=sharing" download><i class="fas fa-file-pdf"></i></a>
+        </p>
+    </div>
+</section>
+
+<style>
+    .tags i {
+        font-size: 1.5em; /* Increase the font size of icons */
+        margin: 0 10px; /* Adjust margin to add space between icons */
+    }
+</style>
+
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>Hello! I'm Vishnu J, a Machine Learning Engineer with 1.5 years of experience in AI & ML, based in Chennai. I hold an MTech in AI & ML from VIT, where I graduated in 2023. Proficient in advanced analytics, machine learning algorithms and data manipulation. Adept at deriving insights from complex datasets. Seeking opportunities to apply expertise in solving real-world problems through data-driven approaches.</p>
+    </div>
+</section>
+
+<section id="projects" style="background-color: #000; padding: 50px 0;">
+    <div class="container" style="max-width: 900px; margin: auto; position: relative;">
+        <h2 style="text-align: center;">Projects</h2>
+        <div id="project-container" style="background-color: #000; border-radius: 15px; padding: 30px; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); position: relative;">
+            <!-- Project 1 -->
+            <div class="project" id="project-1" style="display: block;">
+                <h3>Cloud based Attendance System for Students/Employees using CNN and LSTM</h3>
+                <p>
+                    In the digital age, institutions and companies are adopting e-learning and e-training, where attendance is crucial. This project introduces an automated attendance system using facial recognition, eliminating manual attendance tracking. The system marks attendance with a timestamp as users enter a session and conducts random headcounts to verify accuracy. Attendance data is stored in an SQL database, accessible for verification by instructors or admins. The primary goal is to reduce the manual effort involved in tracking attendance.
+                </p>
+                <p style="text-align: center;">
+                    <img src="cloud_based_attendence.jpeg" alt="Cloud based Attendance System" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/Surendar-G-040899/F3-Batch-Attendance-Online" target="_blank" rel="noopener noreferrer">
+                    
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a> 
+                    <a href="https://www.irjet.net/archives/V8/i6/IRJET-V8I6165.pdf" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: transparent; color: white; border: 1px solid white;">Journal</button>
+                    </a>
+                </p>
+            </div>
+            <!-- Project 2 -->
+            <div class="project" id="project-2" style="display:none;">
+                <h3>Voice Analysis Architecture for Asthma Prediction using Machine Learning</h3>
+                <p>
+                    Collecting the real-time voices of asthmatic patients and normal patients speaking the same words (words with more vowels, which are difficult for asthmatic patients to pronounce) and using PRAAT. With this parameter, we will create a labeled dataset, train it using machine learning models, and compare the performance of each model. Conducted rigorous model training and validation, employing appropriate evaluation metrics, such as precision. Successfully attained a detection accuracy rate of 83.33% while using KNN, Logistic Regression, and Naïve Bayes.
+                </p>
+                <p style="text-align: center;">
+                    <img src="voice_analysis.jpeg" alt="Voice Analysis Architecture for Asthma Prediction" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/vishnuj991999/Voice-Analysis-Architecture-for-Asthma-Prediction-using-Machine-Learning" target="_blank" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a> 
+                    <a href="https://drive.google.com/file/d/1mBq8cNu5DojE63VJiPhK44gLe7rCezR7/view?usp=sharing" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: transparent; color: white; border: 1px solid white;">Journal</button>
+                    </a>
+                </p>
+            </div>
+            <!-- Project 6 -->
+            <div class="project" id="project-3" style="display:none;">
+                <h3>Next-Gen Robot Interaction: Leveraging LLM and LangChain for Intelligent Chatbots</h3>
+                <p>
+                    "Next-Gen Robot Interaction: Leveraging LLM and LangChain for Intelligent Chatbots" explores cutting-edge methods to enhance robotic communication through advanced conversational AI. This approach integrates Large Language Models (LLMs) with LangChain to create sophisticated chatbots capable of understanding and generating human-like dialogue. By combining the contextual prowess of LLMs with LangChain’s powerful data management capabilities, this technology aims to revolutionize how robots interact with users, making conversations more natural, intuitive, and responsive in various robotic applications.
+                </p>
+                <p style="text-align: center;">
+                    <img src="robot_chatbot.jpeg" alt="Cloud based Attendance System" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/vishnuj991999/Next-Gen-Robot-Interaction-Leveraging-LLM-and-LangChain-for-Intelligent-Chatbots"_blank" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a>
+                </p>
+            </div>
+            <!-- Project 5 -->
+            <div class="project" id="project-4" style="display:none;">
+                <h3>Chat-Enabled PDF Explorer using LangChain and GenAI</h3>
+                <p>
+                    Chat-Enabled PDF Explorer using LangChain and GenAI allows users to interact with PDF documents through a conversational interface. By leveraging LangChain for structured data management and GenAI for advanced language processing, this tool enables users to ask questions and retrieve detailed information from PDFs effortlessly. It facilitates intuitive exploration of document content, making it easier to find specific details and insights. Ideal for enhancing productivity and simplifying information retrieval from complex PDF files.
+                </p>
+                <p style="text-align: center;">
+                    <img src="chat.jpeg" alt="Cloud based Attendance System" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/vishnuj991999/Chat-Enabled-PDF-Explorer-using-LangChain-and-GenAI"_blank" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a>
+                </p>
+            </div>
+            <!-- Project 3 -->
+            <div class="project" id="project-5" style="display:none;">
+                <h3>Trip Planner Using Meta-Llama Model</h3>
+                <p>
+                    This web app simplifies trip planning by offering detailed travel information. Users input details such as source and destination cities, mode of transport, duration, and interests. Leveraging the Meta-Llama 3.1 LLM, the app generates personalized itineraries and ticket options. It consolidates travel details into a well-organized plan tailored to individual preferences, making trip planning more efficient and streamlined. This ensures users receive comprehensive and customized travel plans to enhance their travel experience.
+                </p>
+                <p style="text-align: center;">
+                    <img src="trip_planner.jpeg" alt="Cloud based Attendance System" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/vishnuj991999/Trip_Planner_Using_Meta-Llama-3.1-405B" target="_blank" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a> 
+                </p>
+            </div>
+            <!-- Project 4 -->
+            <div class="project" id="project-6" style="display:none;">
+                <h3>YT Videos Blog Generator using OpenAI Whisper and Llama model</h3>
+                <p>
+                    The YouTube Video Blog Generator transforms YouTube videos into detailed blog posts. It extracts audio from videos and transcribes it with Whisper. The Meta Llama 3.1 405B AI model then generates comprehensive blog posts or summaries from the transcription. The final content is saved as a downloadable PDF, facilitating easy sharing and distribution. Key features include audio extraction in WAV format, text conversion via Whisper, content generation using Meta Llama 3.1 405B AI, and PDF output.
+                </p>
+                <p style="text-align: center;">
+                    <img src="youtube_blog_generator.jpeg" alt="Cloud based Attendance System" style="width:45%; height:auto; border-radius:8px;"><br>
+                    <a href="https://github.com/vishnuj991999/YT_Videos_Blog_Generator_Using_Meta-Llama-3.1-405B"_blank" rel="noopener noreferrer">
+                        <button class="toggle-button" style="background-color: white; color: Black; border: 1px solid white;"><i class="fab fa-github"></i> GitHub</button>
+                    </a>
+                </p>
+            </div>
+            
+            
+            
+            <!-- Additional projects can be added here with similar structure -->
+        </div>
+        <div class="navigation-buttons" style="text-align: center; margin-top: 20px;">
+            <span id="prevBtn" style="font-size: 30px; cursor: pointer; position: absolute; top: 50%; left: -50px; transform: translateY(-50%); color: #007bff; padding: 10px 20px; background-color: #fff; border-radius: 50%; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); display: none;">&lt;</span>
+            <span id="nextBtn" style="font-size: 30px; cursor: pointer; position: absolute; top: 50%; right: -50px; transform: translateY(-50%); color: #007bff; padding: 10px 20px; background-color: #fff; border-radius: 50%; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); display: inline-block;">&gt;</span>
+        </div>
+    </div>
+</section>
+
+<script>
+    let currentProject = 1;
+    const totalProjects = 6; // Update this number if you add more projects
+
+    document.getElementById('nextBtn').onclick = function() {
+        document.getElementById(`project-${currentProject}`).style.display = 'none';
+        currentProject = currentProject % totalProjects + 1; // Loop back to first project
+        document.getElementById(`project-${currentProject}`).style.display = 'block';
+    };
+
+    document.getElementById('prevBtn').onclick = function() {
+        document.getElementById(`project-${currentProject}`).style.display = 'none';
+        currentProject = (currentProject - 2 + totalProjects) % totalProjects + 1; // Loop back to last project
+        document.getElementById(`project-${currentProject}`).style.display = 'block';
+    };
+
+    // Both navigation buttons should always be displayed since the projects loop
+    document.getElementById('prevBtn').style.display = 'inline-block';
+    document.getElementById('nextBtn').style.display = 'inline-block';
+</script>
+
+
+
+<section id="experience">
+    <div class="container experience-education-container">
+        <div class="experience-education-inner">
+            <div class="experience-list">
+                <h3>Experience</h3>
+                <div class="experience-item">
+                    <strong>Machine Learning Engineer</strong><br>
+                    <span class="company">Meritus AI</span><br>
+                    <span class="years">Feb 2024 - Present</span><br>
+                    <button class="toggle-button">Show More</button>
+                    <p class="description">Working on the Machine Learning component for a sophisticated AI robot integrating machine learning, natural language processing (NLP) transformers, and computer vision with OpenCV. Developing a LLM model and fine-tune Chatbot for versatile datasets. Get the values from different sensors, perform data engineering, data analysis, and find patterns and deploy deep learning models based on dataset in AWS Sagemaker. Building deep learning models for face recognition, object detection, etc.</p>
+                </div>
+                <div class="experience-item">
+                    <strong>Machine Learning Trainee</strong><br>
+                    <span class="company">Namuvi Technologies</span><br>
+                    <span class="years">Oct 2023 - Jan 2024</span><br>
+                    <button class="toggle-button">Show More</button>
+                    <p class="description">Working on the Machine Learning component for SellerO2's MVP involves creating a Deep Learning model to predict product performance. Developing a LLM model to generate product titles and descriptions that position the product at the top of listings. Performing NLP tasks for customer sentiment analysis in e-commerce and deriving conclusions. Performing web scraping and finding trends and patterns.</p>
+                </div>
+                <div class="experience-item">
+                    <strong>Graduate Engineering Intern</strong><br>
+                    <span class="company">PowerSchool India</span><br>
+                    <span class="years">Sep 2022 - June 2023</span><br>
+                    <button class="toggle-button">Show More</button>
+                    <p class="description">Working with the Data Engineering team to develop and implement efficient Extract, Transform, and Load (ETL) solutions using JavaScript and validated using SQL. Designed and built connectors to automate the process of extracting client data, transforming it, and loading it into a normalized form in the Data Warehouse. Working with Machine Learning and Deep Learning models and resolving issues related to data integration. Tech Stack: ETL Development, JavaScript for data manipulation, SQL & Azure Data Studio, Data Analysis to validate data ensuring accuracy & integrity, Problem Solving.</p>
+                </div>
+            </div>
+            <div class="education-list">
+                <h3>Education</h3>
+                <div class="education-item">
+                    <strong>MTech in AI & ML</strong>
+                    <span class=" institution ">VIT</span>
+                    <span class=" years">2021 - 2023</span>
+                </div>
+                <div class="education-item">
+                    <strong>BE in Computer Science & Engineering</strong>
+                    <span class="institution">Panimalar Engineering College</span>
+                    <span class="years">2017 - 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li><span class="skill">Natural Language Processing</span><span class="percentage">80%</span></li>
+            <li><span class="skill">Computer Vision</span><span class="percentage">85%</span></li>
+            <li><span class="skill">LLM</span><span class="percentage">75%</span></li>
+            <li><span class="skill">Machine Learning</span><span class="percentage">80%</span></li>
+            <li><span class="skill">Deep Learning</span><span class="percentage">80%</span></li>
+            <li><span class="skill">Framework & Libraries</span><span class="percentage">80%</span></li>
+        </ul>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container contact-container">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me at <a href="mailto:vishnuj991999@outlook.com">vishnuj991999@outlook.com</a>.</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Vishnu J. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    // JavaScript to toggle description visibility
+    document.querySelectorAll('.toggle-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const description = button.nextElementSibling;
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+                button.textContent = 'Hide';
+            } else {
+                description.style.display = 'none';
+                button.textContent = 'Show More';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
